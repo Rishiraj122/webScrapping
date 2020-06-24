@@ -1,0 +1,15 @@
+const request = require('request');
+const cheerio = require('cheerio');
+const jsonfile = require('jsonfile');
+
+
+request("https://nist.edu/faculty/forms/faculty.php#FACULTLIST", function(error, res, html) {
+    if (!error && res.statusCode == 200) {
+        const $ = cheerio.load(html);
+        var h1 = $("#DivFaculyListID").text();
+
+        console.log(h1);
+    } else {
+        console.log(error);
+    }
+})
